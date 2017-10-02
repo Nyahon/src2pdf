@@ -1,0 +1,91 @@
+#!/bin/bash
+# ------------------------------------------------------------------
+# Sven Rouvinez & Yohann Meyer - SRC2PDF
+#           Allow printing of assignement code
+#           for Mr. Rentsch's courses at HEIG-VD.
+# ------------------------------------------------------------------
+#  requirements: texlive-full. 
+#   (Can probably be done with only some LaTeX packages.
+#    Exercice is left to the user)
+
+VERSION=0.3.1
+USAGE="Usage: src2pdf -a 'AUTHOR' path/to/file"
+AUTHOR="John Doe"
+DIRECTORY="convert"
+
+
+while getopts ":a:vh" optname
+do
+   case "$optname" in
+   a)
+      AUTHOR="$OPTARG"
+   ;;
+
+   h)
+       echo $USAGE
+       exit 0;
+       ;;
+   v)
+       echo $VERSION
+       exit 0;
+       ;;
+   *)
+      echo "false parameters"
+   ;;
+   esac
+done
+
+
+if [ ! -d "$DIRECTORY" ]; then
+   mkdir $DIRECTORY
+fi
+
+for f in *.java
+do
+echo "
+\documentclass[a4paper,9pt]{article}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[usenames,dvipsnames]{color}  %% Allow color names
+\usepackage{pxfonts}
+\usepackage{textcomp}
+
+\usepackage{listings}
+
+\pagestyle{fancy}
+\setlength\headheight{26pt}
+
+
+%% Path to file, just change this one 
+\newcommand{\pathcodefile}{"$f"}
+\renewcommand*{\ttdefault}{pcr}
+\fancyheadoffset[L]{2cm}
+\fancyhead[LO]{\footnotesize\textbf{Main.java}}
+\fancyhead[RO]{\footnotesize\textbf{$AUTHOR - POO1 - HEIG-VD}}
+
+%% The listings package will format your source code
+
+\lstdefinestyle{customasm}{
+    belowcaptionskip=1\baselineskip,
+    xleftmargin=\parindent,
+    language=java,
+    breaklines=true, %% Wrap long lines
+    basicstyle=\footnotesize\ttfamily,
+    commentstyle=\itshape\color{black},
+    stringstyle=\color{black},
+    keywordstyle=\bfseries\color{black},
+    identifierstyle=\color{black},
+    inputencoding=utf8,
+    extendedchars=true,
+    literate={à}{{\`a}}1 {á}{{\'a}}1 {ã}{{\~a}}1 {é}{{\'e}}1,
+    xleftmargin=-8em,
+    showstringspaces=false
+}        
+\begin{document}
+
+
+\lstinputlisting[style=customasm]{\pathcodefile}
+
+\end{document}" | pdflatex  -output-directory=$DIRECTORY -jobname=$f
+done
