@@ -1,3 +1,7 @@
+#--------------AUTHORS----------------#
+#
+#    Sven Rouvinez & Yohann Meyer
+#
 #------------INSTALLATION-------------#
 
 1. sudo move src2pdf /usr/bin/src2pdf
