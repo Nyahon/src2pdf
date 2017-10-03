@@ -44,6 +44,7 @@ for f in *.java
 do
 echo "
 \documentclass[a4paper,9pt]{article}
+\usepackage[utf8]{inputenc}		%%manage accents
 
 \usepackage{graphicx}
 \usepackage{fancyhdr}
@@ -53,6 +54,13 @@ echo "
 
 \usepackage{listings}
 
+\usepackage{geometry}			%%larger margin to avoid unnececery line breaks
+\geometry{
+left=2in,
+right=0.7in,
+top=1in,
+}
+
 \pagestyle{fancy}
 \setlength\headheight{26pt}
 
@@ -61,7 +69,7 @@ echo "
 \newcommand{\pathcodefile}{"$f"}
 \renewcommand*{\ttdefault}{pcr}
 \fancyheadoffset[L]{2cm}
-\fancyhead[LO]{\footnotesize\textbf{"$f"}}
+\fancyhead[LO]{\footnotesize\textbf{"$f"}}  			%%auto file name if no special car (_)
 \fancyhead[RO]{\footnotesize\textbf{$AUTHOR - POO1 - HEIG-VD}}
 
 \renewcommand{\footrulewidth}{0.4pt}
