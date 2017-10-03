@@ -61,8 +61,10 @@ echo "
 \newcommand{\pathcodefile}{"$f"}
 \renewcommand*{\ttdefault}{pcr}
 \fancyheadoffset[L]{2cm}
-\fancyhead[LO]{\footnotesize\textbf{Main.java}}
+\fancyhead[LO]{\footnotesize\textbf{"$f"}}
 \fancyhead[RO]{\footnotesize\textbf{$AUTHOR - POO1 - HEIG-VD}}
+
+\renewcommand{\footrulewidth}{0.4pt}
 
 %% The listings package will format your source code
 
