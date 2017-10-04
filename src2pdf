@@ -59,12 +59,12 @@ echo "
 
 
 %% Path to file, just change this one 
-\newcommand{\pathcodefile}{"Labo_1.java"}
+\newcommand{\pathcodefile}{"$f"}
 \cfoot{\thepage}
 \renewcommand*{\ttdefault}{pcr}
 \fancyheadoffset[L]{2cm}
-\fancyhead[LO]{\footnotesize\textbf{Main.java}}
-\fancyhead[RO]{\footnotesize\textbf{ - INF1-C - HEIG-VD}}
+\fancyhead[LO]{\footnotesize\textbf{"$f"}}
+\fancyhead[RO]{\footnotesize\textbf{"$AUTHOR" - INF1-C - HEIG-VD}}
 
 %% The listings package will format your source code
 
@@ -98,9 +98,6 @@ echo "
 \begin{document}
 
 \lstinputlisting[style=customasm]{\pathcodefile}
-
-
-
 
 \end{document}" | pdflatex -output-directory=$DIRECTORY -jobname=$f
 done
