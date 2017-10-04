@@ -44,8 +44,8 @@ for f in *.java
 do
 echo "
 \documentclass[a4paper,9pt]{article}
-\usepackage[utf8]{inputenc}		%%manage accents
 
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage[usenames,dvipsnames]{color}  %% Allow color names
@@ -54,25 +54,17 @@ echo "
 
 \usepackage{listings}
 
-\usepackage{geometry}			%%larger margin to avoid unnececery line breaks
-\geometry{
-left=2in,
-right=0.7in,
-top=1in,
-}
-
 \pagestyle{fancy}
 \setlength\headheight{26pt}
 
 
 %% Path to file, just change this one 
-\newcommand{\pathcodefile}{"$f"}
+\newcommand{\pathcodefile}{"Labo_1.java"}
+\cfoot{\thepage}
 \renewcommand*{\ttdefault}{pcr}
 \fancyheadoffset[L]{2cm}
-\fancyhead[LO]{\footnotesize\textbf{"$f"}}  			%%auto file name if no special car (_)
-\fancyhead[RO]{\footnotesize\textbf{$AUTHOR - POO1 - HEIG-VD}}
-
-\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[LO]{\footnotesize\textbf{Main.java}}
+\fancyhead[RO]{\footnotesize\textbf{ - INF1-C - HEIG-VD}}
 
 %% The listings package will format your source code
 
@@ -88,14 +80,27 @@ top=1in,
     identifierstyle=\color{black},
     inputencoding=utf8,
     extendedchars=true,
-    literate={à}{{\`a}}1 {á}{{\'a}}1 {ã}{{\~a}}1 {é}{{\'e}}1,
+    literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+    {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+    {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+    {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+    {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+    {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+    {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+    {€}{{\EUR}}1 {£}{{\pounds}}1,
     xleftmargin=-8em,
     showstringspaces=false
-}        
+         }        
 \begin{document}
-
 
 \lstinputlisting[style=customasm]{\pathcodefile}
 
-\end{document}" | pdflatex  -output-directory=$DIRECTORY -jobname=$f
+
+
+
+\end{document}" | pdflatex -output-directory=$DIRECTORY -jobname=$f
 done
