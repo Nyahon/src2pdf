@@ -8,7 +8,7 @@
 #   (Can probably be done with only some LaTeX packages.
 #    Exercice is left to the user)
 
-VERSION=0.3.1
+VERSION=0.3.2
 USAGE="Usage: src2pdf -a 'AUTHOR' path/to/file"
 AUTHOR="John Doe"
 DIRECTORY="convert"
