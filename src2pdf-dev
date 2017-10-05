@@ -54,6 +54,13 @@ echo "
 
 \usepackage{listings}
 
+\usepackage{geometry}           %%larger margin to avoid unnececery line breaks
+\geometry{
+left=1.5in,
+right=0.7in,
+top=1in,
+}
+
 \pagestyle{fancy}
 \setlength\headheight{26pt}
 
@@ -64,7 +71,10 @@ echo "
 \renewcommand*{\ttdefault}{pcr}
 \fancyheadoffset[L]{2cm}
 \fancyhead[LO]{\footnotesize\textbf{"$f"}}
-\fancyhead[RO]{\footnotesize\textbf{"$AUTHOR" - INF1-C - HEIG-VD}}
+\fancyhead[RO]{\footnotesize\textbf{"$AUTHOR" - POO1 - HEIG-VD}}
+
+%footer bar
+\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
 
 %% The listings package will format your source code
 
